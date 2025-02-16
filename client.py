@@ -15,6 +15,7 @@ async def get_access_envs(url, api_key, place):
     async with aiohttp.ClientSession() as session:
         try:
             async with session.get(final_url) as response:
+                print(response)
                 if response.status == 200:
                     data = await response.json()
                     features = data["features"][0]["properties"]["CompanyMetaData"]["Features"]
@@ -28,6 +29,9 @@ async def get_access_envs(url, api_key, place):
                             access_envs.append(env["name"])
                     print(access_envs)
                     return access_envs
+                elif response.status == 403:
+                    return "Токен Протух"
+
                 else:
                     logger.warning(f"Ошибка при получении данных: статус {response.status}")
         except Exception as e:

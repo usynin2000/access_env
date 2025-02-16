@@ -7,5 +7,5 @@ load_dotenv()
 
 TOKEN = os.getenv("TOKEN")
 YANDEX_ORG_API = os.getenv("YANDEX_ORG_API")
-YANDEX_UR = os.getenv("YANDEX_URL")
+YANDEX_URL = os.getenv("YANDEX_URL")
 

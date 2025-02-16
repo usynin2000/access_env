@@ -8,12 +8,12 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.storage.memory import MemoryStorage
 
 from client import get_access_envs
-from config import TOKEN, YANDEX_ORG_API
+from config import TOKEN, YANDEX_ORG_API, YANDEX_URL
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-URL = "https://search-maps.yandex.ru/v1"
+URL = YANDEX_URL
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
@@ -41,6 +41,8 @@ async def process_ai_question(message: Message, state: FSMContext):
         return
     else:
         text_list = await get_access_envs(url=URL, api_key=YANDEX_ORG_API, place=place_name)
+        if text_list == "Токен Протух":
+            return await message.answer(text=text_list, parse_mode="HTML")
         response = "<b>Вот информация по доступной среде:</b>"
         for acces_env in text_list:
             response = response + f"• {acces_env}" + "\n\n"
