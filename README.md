@@ -17,3 +17,6 @@ pip install -r requirements.txt
 ```shell
 python3 main.py
 ```
+
+
+docker compose up --build 
