@@ -10,3 +10,10 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
+```shell
+pip install -r requirements.txt
+```
+
+```shell
+python3 main.py
+```
